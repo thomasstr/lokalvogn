@@ -1,7 +1,10 @@
 Lokalvogn::Application.routes.draw do
-  get "purchase/index"
+  
+  root :to => 'purchase#index'
 
-  get "purchase/complete"
+  %w(credit express express_complete complete).each do |action|
+    match "purchase/#{action}" => "purchase##{action}"
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
