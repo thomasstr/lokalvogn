@@ -1,4 +1,8 @@
 Lokalvogn::Application.routes.draw do
+  get "purchase/index"
+
+  get "purchase/complete"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
