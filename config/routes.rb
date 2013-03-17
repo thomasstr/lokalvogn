@@ -1,6 +1,17 @@
 Lokalvogn::Application.routes.draw do
-  
-  root :to => 'purchase#index'
+  resources :orders
+
+
+  resources :line_items
+  resources :carts
+  resources :products
+
+  match "my_cart", :to => "store#cart"
+  match "why_us", :to => "store#why_us"
+  match "purchase", :to => "purchase#index"
+  match "show_purchase", :to => "purchase#show"
+
+  root :to => 'store#index', as: "store"
 
   %w(credit express express_complete complete).each do |action|
     match "purchase/#{action}" => "purchase##{action}"

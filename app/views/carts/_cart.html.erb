@@ -1,0 +1,22 @@
+<% unless cart.line_items.empty? %>
+<div class="cart_title">
+</div>
+	<%= render("carts/cart_header") %>
+	<%= render(cart.line_items) %>
+	<tr>
+		<td></td>
+		<td></td>
+		<td class="pull-right">Sub total</td>
+		<td><b><%= number_to_currency(cart.total_price) %></b></td>
+	</tr>
+	<%= render("carts/cart_end") %>
+<div class="pull-left">
+	<%= button_to "Gå til kassen", purchase_path, method: :get, class: "btn btn-small" %>
+</div>
+<div class="pull-left">
+	<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), purchase_express_path  %>
+</div>
+<div class="pull-right">
+	<%= button_to "Tøm handlevogn", cart, method: :delete, confirm: "Er du sikker på at du vil tømme handlevognen?", class: "btn btn-small btn-danger" %>
+</div>
+	<% end %>

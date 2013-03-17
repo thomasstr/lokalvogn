@@ -1,11 +1,20 @@
 class PurchaseController < ApplicationController
   before_filter :require_ssl, :only => [ :index, :credit ]
-  before_filter :load_card
+  #before_filter :load_card
+  before_filter :validate_card
   
   BILL_AMOUNT = 1200
   
   def index
   end
+
+  def validate_card
+      unless @cc.valid?
+        @cc.errors.full_messages.each do |message|
+          errors[:base] << message
+        end
+      end
+    end
   
   # Use the DirectPayment API
   def credit
@@ -82,6 +91,27 @@ class PurchaseController < ApplicationController
     end
     
     def load_card
-      @cc = ActiveMerchant::Billing::CreditCard.new(params[:creditcard])
+      @cc ||= ActiveMerchant::Billing::CreditCard.new(params[:creditcard])
     end
+
+    def credit_card
+      @cc ||= ActiveMerchant::Billing::CreditCard.new(
+        :brand                => card_type,
+        :number               => card_number,
+        :verification_value   => card_verification,
+        :month                => card_expiration.month,
+        :year                 => card_expiration.year,
+        :first_name           => first_name,
+        :last_name            => last_name
+        )
+    end
+
+    def validate_card
+      unless credit_card.valid?
+        credit_card.errors.full_messages.each do |message|
+          errors[:base] << message
+        end
+      end
+    end
+
 end

@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Lokalvogn::Application.config.secret_token = '04f77d3a672ff6362ac2deda2e3297a75fe0ddd53eafd8a066f42b6f8f0c076991a98764522e864c0b7240c7bb50bdc6ccdf63d94dc3f73128acde2741ca60fb'
+Lokalvogn::Application.config.secret_token = '2e36f4b488e48982de2f655a69925c28df42eb7b5e4cb157715c4c363c889f468ed525e1cf57dcafa86ba2fdf82e700d474cc25112635ce5f2dc698e247a095c'

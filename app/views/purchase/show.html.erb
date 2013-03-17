@@ -1,0 +1,20 @@
+<table class="table table-striped">
+	<tr>
+		<td>Transaksjons id</td>
+		<td>CVV Kode</td>
+		<td>AVS Kode</td>
+		<td>Beløp</td>
+		<td>Token</td>
+	</tr>
+	<% @purchase.each do |line_item| %>
+  <tr>
+    <td><%= line_item.transaction_id %></td>
+    <td><%= line_item.cvv2_code %></td>
+    <td><%= line_item.avs_code %></td>
+    <td><%= line_item.amount %></td>
+    <td><%= line_item.token %></td>
+    
+    
+  </tr>
+<% end %>
+</table>

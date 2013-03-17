@@ -15,12 +15,12 @@
   Pay by credit card...
 </p>
 
-<%= form_for @cc, :as => :creditcard, :url => { :action => 'credit' } do |f| %>
+<%= form_for @cc do |f| %>
   <p>Use the card number provided by your Sandbox account while testing</p>
   <label>Card Number</label>
   <%= f.text_field :number %>
   <label>Card Type</label>
-  <%= f.select :brand, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
+  <%= f.select :brand, Purchase::PAYMENT_TYPES %>
   <label>Expiration</label>
   <%= f.select :month, (1 .. 12) %>
   <%= f.select :year, (Time.now.year .. 10.years.from_now.year) %>

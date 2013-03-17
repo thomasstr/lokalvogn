@@ -11,6 +11,19 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+$(".alert").alert();
+window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 5000);
+
+$("input.date_time").datetime();
+$("input.date_picker").datepicker();
+$("#carts").html("<%=j render 'store/cart' %>");
+$("#carts").dropdown();
+$('.dropdown-toggle').dropdown() 
